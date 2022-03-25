@@ -2,12 +2,14 @@ const express = require("express");
 const app = express();
 const path = require("path");
 var methodOverride = require("method-override");
-const Product = require("./models/product");
 const mongoose = require("mongoose");
 const port = 3000;
 
+const Product = require("./models/product");
+const Farm = require("./models/farm");
+
 mongoose
-  .connect("mongodb://localhost:27017/farmStand")
+  .connect("mongodb://localhost:27017/farmStandTake2")
   .then(() => {
     console.log("Mongo Connection Made");
   })
@@ -27,10 +29,23 @@ app.get("/", (req, res) => {
 
 const categories = ["fruit", "vegetable", "dairy"];
 
+//Routes for Farm...
+// Index
+app.get("/farms", async (req, res) => {
+  const farms = await Farm.find({});
+  res.render("farms/index", { farms });
+});
+//New
 app.get("/farms/new", (req, res) => {
   res.render("farms/new");
 });
 
+app.post("/farms", async (req, res) => {
+  const farm = new Farm(req.body);
+  await farm.save();
+});
+
+//Routes for Products...
 // Index Route
 app.get("/products", async (req, res) => {
   const { category } = req.query;
