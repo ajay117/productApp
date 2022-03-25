@@ -27,6 +27,10 @@ app.get("/", (req, res) => {
 
 const categories = ["fruit", "vegetable", "dairy"];
 
+app.get("/farms/new", (req, res) => {
+  res.render("farms/new");
+});
+
 // Index Route
 app.get("/products", async (req, res) => {
   const { category } = req.query;
