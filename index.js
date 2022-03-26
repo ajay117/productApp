@@ -68,7 +68,7 @@ app.post("/farms/:id/products", async (req, res) => {
   product.farm = farm;
   await farm.save();
   await product.save();
-  res.send(farm);
+  res.redirect("/farms/" + id);
 });
 
 //Routes for Products...
