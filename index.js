@@ -72,6 +72,12 @@ app.post("/farms/:id/products", async (req, res) => {
   res.redirect("/farms/" + id);
 });
 
+//Delete Route...
+app.delete("/farms/:id", async (req, res) => {
+  const farm = await Farm.findByIdAndDelete(req.params.id);
+  res.redirect("/farms");
+});
+
 //Routes for Products...
 // Index Route
 app.get("/products", async (req, res) => {
