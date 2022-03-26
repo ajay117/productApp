@@ -50,7 +50,7 @@ app.get("/farms/new", (req, res) => {
 
 //Show Route...
 app.get("/farms/:id", async (req, res) => {
-  const farm = await Farm.findById(req.params.id);
+  const farm = await Farm.findById(req.params.id).populate("products");
   res.render("farms/show", { farm });
 });
 
