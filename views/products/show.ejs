@@ -8,13 +8,14 @@
   </head>
   <body>
     <ul>
-      <li><b><%= product.name %></b></li>
+      <h1><%= product.name %></h1>
       <li><b>Price:</b> <%= product.price %></li>
       <li>
         <a href="/products/?category=<%= product.category %>"
           ><b>Category:</b> <%= product.category %></a
         >
       </li>
+      <li><a href="/farms/<%= product.farm._id%>"><%= product.name %></a></li>
     </ul>
     <a href="/products/<%= product.id %>/edit">Edit Product</a>
     <a href="/products">All Products</a>
